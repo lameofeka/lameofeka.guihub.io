@@ -1,0 +1,167 @@
+﻿<%@ Master Language="C#" %>
+<%@ Import Namespace ="System.Data.SqlClient" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script runat="server">
+
+       
+    
+
+    static string SignUpAdmin = " <div class='login'><h1 class='loginText'> <a href='logIn.aspx'style='text-decoration:none; color:White;'> התחבר  </a></h1></div>";
+    static string SignUpUser = " <div class='login'><h1 class='loginText'><a href='logIn.aspx'style='text-decoration:none; color:White;'>  התחבר </a></h1></div>";
+    static string LogIn = "<div class='signup'><h1 class='signupText'><a href='signUp.aspx'style='text-decoration:none; color:White;'>  הירשם  </a></h1></div>";
+    static string DiscconectAdmin = "";
+    static string DiscconectUser = "";
+    
+    
+    static string SendTheory = "";
+    static string Quiz = "";
+    static string Change= "";
+    static string Users = "";
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+        
+        if(Session["login"] == "admin")
+        {
+            Users = "<div class='small' style='top: 150px;'><h1 style='position:relative; left:60px'class='smallText'><a href='Users.aspx'style='text-decoration:none;' class='a2'>  נרשמים </a></h1></div>";
+            DiscconectAdmin = "<div class='login'><h1 class='loginText'><a href='disconnect.aspx'style='text-decoration:none; color:White;'>  התנתק  </a></h1></div>";
+            SignUpAdmin = "";
+            LogIn = "";
+        }
+        else
+        {
+             SendTheory = "";
+             Quiz = "";
+             Change= "";
+             Users = "";
+             SignUpAdmin = " <div class='login'><h1 class='loginText'><a href='logIn.aspx'style='text-decoration:none; color:White;'>  התחבר  </a></h1></div>";
+             LogIn = "<div class='signup'><h1 class='signupText'><a href='signUp.aspx'style='text-decoration:none; color:White;'>  הירשם  </a></h1></div>";
+             DiscconectAdmin = "";
+        }
+        
+        
+
+        if (Session["login"] == "user")
+        {
+            SendTheory = "<div class='small' style='top: 150px;'><h1 style='position:relative; left:40px' class='smallText'> <a href='send.aspx'style='text-decoration:none;' class='a2'> שלח תאוריה </a></h1></div>";
+            Quiz = "<div class='small' style='top: 180px;'><h1 style='position:relative; left:65px' class='smallText'><a href='quiz.aspx' style='text-decoration:none;' class='a2'> שאלון </a></h1></div>";
+            Change = " <div class='small' style='top: 210px;'><h1 style='position:relative; left:40px' class='smallText'><a href='editDetails.aspx' style='text-decoration:none;' class='a2'> שנה סיסמא </a></h1></div>";
+            SignUpUser = "";
+            LogIn = "";
+            DiscconectUser = "<div class='login'><h1 class='loginText'><a href='disconnect.aspx'style='text-decoration:none; color:White;'>  התנתק  </a></h1></div>";
+        }  
+            
+        else
+        {
+            if (Session["login"] == "admin")
+            {
+                
+            }
+            else
+            {
+                SendTheory = "";
+                Quiz = "";
+                Change = "";
+                SignUpUser = " <div class='login'><h1 class='loginText'><a href='logIn.aspx'style='text-decoration:none; color:White;'>  התחבר  </a></h1></div>";
+                LogIn = "<div class='signup'><h1 class='signupText'><a href='signUp.aspx'style='text-decoration:none; color:White;'>  הירשם  </a></h1></div>";
+                DiscconectUser = "";
+            }
+            
+	    }
+    }
+    
+    
+    
+</script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+
+    <title>conspir.com</title>
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript">
+        var picN = 1, slide;
+        function start() {
+            slide = setInterval('picSlide()', 60);
+        }
+        function picSlide() {
+            document.getElementById("pic").src = picN + ".png";
+            if (picN==99) {
+                picN = 1;
+            }
+            else {
+                picN++;
+            }
+        }
+        
+    </script>
+
+  
+
+
+</head>
+<body>
+
+<div class="light">
+        <%=SignUpAdmin%>
+        <%=SignUpUser%>
+        <%=LogIn%>
+        <%=DiscconectAdmin%>
+        <%=DiscconectUser%>
+   <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+       
+
+</div>
+
+<div class="dark" >
+    <script type="text/javascript">        start(); </script>
+
+    <a href="theories.aspx"style="text-decoration:none;"> <img src="pics/1.png" alt="pic" id="pic" width="250px" height="240px" style="position: relative; left:70px; " /></a>
+    
+
+
+
+
+<div class="small" style="top: 60px;">
+<h1 style="position:relative; left:50px; width:100px" class="smallText"><a href="theories.aspx"style="text-decoration:none;" class="a2">   דף הבית  </a></h1>
+</div>
+
+
+<div class="small" style="top: 90px;">  
+<h1 class="smallText" style="position:relative;left:9px"><a href="whatis.aspx"style="text-decoration:none;" class="a2">  ?מה זה קונספירציה  </a></h1>
+</div>
+
+
+<div class="small" style="top: 120px;">  
+<h1 class="smallText" style="position:relative; left:69px"> <a href="homepage.aspx"style="text-decoration:none;" class="a2"> מידע  </a></h1>
+</div>
+
+
+<%=SendTheory%>
+
+<%=Quiz%>
+
+<%=Change %>
+
+<%=Users %>
+
+
+</div>
+
+
+
+
+
+<div class="footer">
+<h1 class="textFooter">ofekamar@gmail.com :כל הזכויות שמורות לאופק אמר לפרטים  </h1>
+
+</div>
+
+  
+</body>
+</html>
